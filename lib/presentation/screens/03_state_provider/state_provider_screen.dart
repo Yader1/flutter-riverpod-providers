@@ -1,6 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_app/presentation/screens/providers/providers.dart';
+
+import '../../../config/helpers/random_generator.dart';
 
 
 class StateProviderScreen extends ConsumerWidget {
@@ -9,6 +13,8 @@ class StateProviderScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final counter = ref.watch( counterProvider );
+    final theme = ref.watch( darkModeProvider );
+    final name = ref.watch( generateNameProvider );
 
     return Scaffold(
       appBar: AppBar(
@@ -21,11 +27,13 @@ class StateProviderScreen extends ConsumerWidget {
 
             IconButton(
               // icon: const Icon( Icons.light_mode_outlined, size: 100 ),
-              icon: const Icon( Icons.dark_mode_outlined, size: 100 ),
-              onPressed: () {},
+              icon: Icon(theme == true ? Icons.dark_mode_outlined : Icons.light_mode_outlined, size: 100 ),
+              onPressed: () {
+                ref.read(darkModeProvider.notifier).toggleDarkMode();
+              },
             ),
 
-            const Text('Fernando Herrera', style: TextStyle(fontSize: 25 )),
+            Text(name, style: TextStyle(fontSize: 25 )),
 
             TextButton.icon(
               icon: const Icon( Icons.add, size: 50,),
@@ -42,7 +50,9 @@ class StateProviderScreen extends ConsumerWidget {
       floatingActionButton: FloatingActionButton.extended(
         label: const Text('Nombre aleatorio'),
         icon: const Icon( Icons.refresh_rounded ),
-        onPressed: () {},
+        onPressed: () {
+          ref.read(generateNameProvider.notifier).changeName(RandomGenerator.getRandomName());
+        },
       ),
     );
   }
