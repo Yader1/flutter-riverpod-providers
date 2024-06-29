@@ -6,12 +6,12 @@ part of 'todos_providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$todoCurrentFilterHash() => r'f709ad79fb4230defff80ee6a062ece2099a01dc';
+String _$todoCurrentFilterHash() => r'95a15b28dfb0e316a33898e3445d801049365164';
 
 /// See also [TodoCurrentFilter].
 @ProviderFor(TodoCurrentFilter)
 final todoCurrentFilterProvider =
-    AutoDisposeNotifierProvider<TodoCurrentFilter, FilterType>.internal(
+    NotifierProvider<TodoCurrentFilter, FilterType>.internal(
   TodoCurrentFilter.new,
   name: r'todoCurrentFilterProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -21,13 +21,12 @@ final todoCurrentFilterProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$TodoCurrentFilter = AutoDisposeNotifier<FilterType>;
-String _$todosListHash() => r'fb60c41f689ba9a168fd78f12a29469ba1fe8a77';
+typedef _$TodoCurrentFilter = Notifier<FilterType>;
+String _$todosListHash() => r'2e8e8360e8499509fb3c5ed55c31eb38726e9874';
 
 /// See also [TodosList].
 @ProviderFor(TodosList)
-final todosListProvider =
-    AutoDisposeNotifierProvider<TodosList, List<Todo>>.internal(
+final todosListProvider = NotifierProvider<TodosList, List<Todo>>.internal(
   TodosList.new,
   name: r'todosListProvider',
   debugGetCreateSourceHash:
@@ -36,6 +35,6 @@ final todosListProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$TodosList = AutoDisposeNotifier<List<Todo>>;
+typedef _$TodosList = Notifier<List<Todo>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
